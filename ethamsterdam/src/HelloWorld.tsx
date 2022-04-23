@@ -1,6 +1,8 @@
 import { HelloWorld_Query } from './w3';
 import React from 'react';
-import { useWeb3ApiClient } from '@web3api/react';
+import { ToHex } from './ToHex';
+import { ApproveToken } from './ApproveToken'
+import { useWeb3ApiClient, useWeb3ApiInvoke } from '@web3api/react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -8,15 +10,24 @@ export const HelloWorld: React.FC = () => {
   const [message, setMessage] = React.useState('');
   const client = useWeb3ApiClient();
 
+  // Hackathon functions
 
-  // // Trying out Univ3 Functions
-  // const { execute, data, errors, loading } = useWeb3ApiQuery({
-  //   uri: 'ens/api.helloworld.polywrap.eth',
-  //   query: `{
-  //     logMessage(message: "Hello World!")
-  //   }`,
+  /// Approve spending of a token
+  // const { data, execute, loading, error } = useWeb3ApiInvoke<String>({
+  //   uri: ethersIpfsUri,
+  //   module: "query",
+  //   method: "toHex",  
   // });
 
+  // async function approveToken() {
+  //   const result = await execute{address}
+  // };
+
+  // approve(
+  //   token: Token! # Token for which to approve the Uniswap router contract to transfer
+  //   amount: BigInt # The amount to approve for transfer; defaults to maximum amount if null
+  //   gasOptions: GasOptions # Transaction gas configuration
+  // ): Ethereum_TxResponse!
 
   const notify = () => toast('Take a look at your console!');
 
@@ -38,6 +49,16 @@ export const HelloWorld: React.FC = () => {
         <div className='hello__heading'>"Hello World" from Polywrap!</div>
         <div className='hello__text'>
           <strong>Test the "Hello World" Polywrapper by:</strong>
+{/* 
+          <button type='submit' 
+          className='approve__btn' onClick={
+            () => toHex ("123123")}>
+              approveToken
+          </button> */}
+
+          <ToHex/>
+          <ApproveToken />
+
           <br />
           1. typing into the input below
           <br />
@@ -65,8 +86,11 @@ export const HelloWorld: React.FC = () => {
           <button type='submit' className='hello__btn'>
             Submit
           </button>
+          
           <ToastContainer />
         </form>
+
+
         <div className='hello__text'>
           Want to build your own Polywrapper?
           <br />
