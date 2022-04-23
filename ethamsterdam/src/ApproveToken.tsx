@@ -4,8 +4,6 @@ import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 export const ApproveToken: React.FC = () => {  
     const client = useWeb3ApiClient();
   
@@ -18,19 +16,26 @@ export const ApproveToken: React.FC = () => {
     });
   
     /// Creating the  function for the Button's onClick 
-    async function toHexQuery(value:string) {
-      const hexify = () => toast('Turning your number into hex!');
-      hexify();
-      const result = await execute({value})
+    async function approveToken(token:string, amount:string) {
+      //const hexify = () => toast('Turning your number into hex!');
+      //hexify();
+      const result = await execute({token, amount})
       console.log(result)
     };
 
+    // approve(
+    //     token: Token! # Token for which to approve the Uniswap router contract to transfer
+    //     amount: BigInt # The amount to approve for transfer; defaults to maximum amount if null
+    //     gasOptions: GasOptions # Transaction gas configuration
+    //   ): Ethereum_TxResponse!
 
     return (
             <>
-            <button type='submit' className='hello__btn'>
+            <button type='submit' className='hello__btn'
+                onClick={ () => approveToken ("0xasdjkl", "234786")}>
                 Approve Token
-            </button><ToastContainer /></>
+            </button>
+            <ToastContainer /></>
         );
 
 
