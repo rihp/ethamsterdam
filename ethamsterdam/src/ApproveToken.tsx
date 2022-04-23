@@ -3,6 +3,12 @@ import { useWeb3ApiClient, useWeb3ApiInvoke } from '@web3api/react';
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+interface Props {
+  user: {
+      name: string,
+      email: Email
+  }
+}
 
 export const ApproveToken: React.FC = () => {  
     const client = useWeb3ApiClient();
